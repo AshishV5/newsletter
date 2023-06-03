@@ -4,7 +4,7 @@ const request = require("request");
 const https = require("https");
 
 const app = express();
-const port = process.env.PORT || 3000; // Use the port provided by the hosting environment or default to 3000
+const port = process.env.PORT || 3000; 
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
