@@ -4,7 +4,7 @@ const request = require("request");
 const https = require("https");
 
 const app = express();
-const port = process.env.PORT || 3000; 
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -25,10 +25,10 @@ app.post("/", (req, res) => {
         status: "subscribed",
         merge_fields: {
           FNAME: firstName,
-          LNAME: lastName
-        }
-      }
-    ]
+          LNAME: lastName,
+        },
+      },
+    ],
   };
 
   const jsonData = JSON.stringify(data);
@@ -37,17 +37,17 @@ app.post("/", (req, res) => {
 
   const options = {
     method: "POST",
-    auth: "ashish:2282e938efb04634ef00774160566fdb-us13"
+    auth: "ashish:2282e938efb04634ef00774160566fdb-us13",
   };
 
-  const request = https.request(url, options, response => {
+  const request = https.request(url, options, (response) => {
     if (response.statusCode === 200) {
       res.sendFile(__dirname + "/success.html");
     } else {
       res.sendFile(__dirname + "/failure.html");
     }
 
-    response.on("data", data => {
+    response.on("data", (data) => {
       console.log(JSON.parse(data));
     });
   });
